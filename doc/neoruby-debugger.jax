@@ -1,0 +1,135 @@
+*neoruby-debugger*
+
+version: 2024/02/07
+Author: takkii <karuma.reason@gmail.com>
+License: MIT
+
+==============================================================================
+
+*インストール*
+
+gem install debug
+
+gem install readapt
+
+※ readptはRuby3.1.xのみ
+
+==============================================================================
+
+*設定例*
+
+" neoruby-debugger | neovim/init.vim
+
+" 例: vim-comのPATH、vim-plugを使用しています。
+if filereadable(expand('~/.neovim/plugged/vim-com/plugins/refac.vim'))
+  source ~/.neovim/plugged/vim-com/plugins/refac.vim
+endif
+
+" vim-plug内追加
+Plug 'mfussenegger/nvim-dap'
+Plug 'rcarriga/nvim-dap-ui'
+Plug 'takkii/neoruby-debugger'
+Plug 'takkii/vim-com'
+
+" 外観などの前に設定
+
+lua require('neoruby-debugger').setup()
+lua require('dapui').setup()
+
+==============================================================================
+
+*依存ライブラリ解消*
+
+" 依存ライブラリをインストールしていないときに実行する
+Plug 'takkii/neoruby-debugger', { 'do': 'bundle update' }
+
+==============================================================================
+
+*vim-com, バージョン: 1.0.0*
+
+※ vim-com/refac.vimをsourceで適用していることが条件です。
+
+"vim-plugでプラグインをインストール
+:PLI
+
+" vim-plug内プラグインを更新
+:PLU
+
+" 行にカーソルを停止、ブレークポイント
+:BreakPoint
+
+" デバッグUI起動
+:UIOpen
+
+" デバッグ起動後、1を選ぶ
+:Debug
+
+" UI 非表示
+:UIToggle
+
+" デバッグUI解除
+:UIClose
+
+" UIなし、インタラクティブ
+:RPOpen
+
+==============================================================================
+
+*開発環境メモ*
+
+" neoruby-debugger | OS other than Ubuntu
+
+cd $HOME
+
+git clone git@github.com:takkii/neoruby-debugger.git
+
+neoruby-debugger | init.vim/PATH add.
+
+set runtimepath+=~/neoruby-debugger
+
+" ヘルプPATHの貼り直し / Neovim内
+
+:helptags ~/neoruby-debugger/doc
+
+" lua/neoruby-debugger.lua
+
+96行目 -- Settings for each environment with a different OS.
+
+97行目以下記述を各OS、
+
+rbenvやanyenvなど使用しているRubyバージョン管理のPATHに変更。
+
+" neoruby-debugger | LinuxKernel
+/usr/local/bin/ruby
+
+sudo apt install ruby ruby-dev
+
+" neoruby-debugger | UNIX
+let g:ruby_host_prog = $HOME . '/.rbenv/shims/neovim-ruby-host'
+
+" neoruby-debugger | Windows
+let g:ruby_host_prog = 'C:/Ruby3-x64/bin/neovim-ruby-host'
+
+==============================================================================
+
+*エラーメッセージを探索*
+
+ruby error.rb ja
+
+※ 日本語で表示します。
+
+ruby error.rb
+
+ruby error.rb en
+
+※ 英語で表示します。
+
+1. ヘルプでエラーメッセージがどれに該当するかみてください。
+
+2. 英文を読んで、エラーの対処を考慮してください。
+
+3. 引数に何も入れないとき、初期値は英語です。
+
+※ Tabで単語を補完することができます。
+
+==============================================================================
