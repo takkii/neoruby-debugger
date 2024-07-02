@@ -12,7 +12,7 @@ gem install debug
 
 gem install readapt
 
-※ readpt is Ruby3.1.x only
+※ UNIX environment is recommended
 
 ==============================================================================
 
