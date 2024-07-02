@@ -1,6 +1,6 @@
 *neoruby-debugger*
 
-version: 2024/02/07
+version: 2024/07/02
 Author: takkii <karuma.reason@gmail.com>
 License: MIT
 
