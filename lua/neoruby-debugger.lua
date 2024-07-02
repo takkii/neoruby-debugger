@@ -76,8 +76,10 @@ local function setup_rdbg_adapter(dap)
       script = config.script
     end
 
-    if config.bundle == 'bundle' then
+    if config.request == 'attach' then
       args = {'-n', '--open', '--port', config.port, '-c', '--', 'bundle', 'exec', config.command, script}
+    elseif config.request == 'launch' then
+      args = {'-n', '--open', '--port', config.port, '-c', '--', 'bundle', 'exec', 'readapt', 'stdio'}
     else
       args = {'--open', '--port', config.port, '-c', '--', config.command, script}
     end
@@ -307,9 +309,10 @@ local function setup_rdbg_configuration(dap)
     type = 'ruby',
     name = 'run rails:use readapt',
     bundle = 'bundle',
-    request = 'attach',
-    command = 'readapt',
-    script = "stdio",
+    request = 'launch';
+    program = 'bundle';
+    programArgs = {'exec', 'rails', 's'};
+    useBundler = true;
     port = 38698,
     server = "127.0.0.1",
     options = {
@@ -334,16 +337,17 @@ local function setup_rdbg_configuration(dap)
     waiting = 1000,
   },
   {
-    -- Experimental feature
     type = 'ruby',
-    name = 'run docker',
-    request = 'attach',
-    command = 'docker-compose',
-    script = "up",
+    name = 'run sinatra:use readapt',
+    bundle = 'bundle',
+    request = 'launch';
+    program = 'bundle';
+    programArgs = {'exec', 'rackup'};
+    useBundler = true;
     port = 38698,
-    server = '127.0.0.1',
+    server = "127.0.0.1",
     options = {
-     source_filetype = 'ruby';
+      source_filetype = 'ruby';
     },
     localfs = true,
     waiting = 1000,
