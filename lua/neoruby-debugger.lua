@@ -7,6 +7,24 @@ local default_config = {
     initialize_timeout_sec = 20,
     port = "${port}",
   },
+  rails = {
+    initialize_timeout_sec = 20,
+  },
+  bundle = {
+    initialize_timeout_sec = 20,
+  },
+  readapt = {
+    initialize_timeout_sec = 20,
+  },
+  rackup = {
+    initialize_timeout_sec = 20,
+  },
+  rspec = {
+    initialize_timeout_sec = 20,
+  },
+  rake = {
+    initialize_timeout_sec = 20,
+  },
 }
 
 local function load_module(module_name)
