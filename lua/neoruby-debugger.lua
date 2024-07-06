@@ -6,24 +6,46 @@ local default_config = {
   rdbg = {
     initialize_timeout_sec = 20,
     port = "${port}",
+    args = {},
+    build_flags = "",
+    detached = true,
+    cwd = nil,
   },
   rails = {
     initialize_timeout_sec = 20,
+    args = {},
+    build_flags = "",
+    cwd = nil,
   },
   bundle = {
     initialize_timeout_sec = 20,
+    args = {},
+    build_flags = "",
+    cwd = nil,
   },
   readapt = {
     initialize_timeout_sec = 20,
+    args = {},
+    build_flags = "",
+    cwd = nil,
   },
   rackup = {
     initialize_timeout_sec = 20,
+    args = {},
+    build_flags = "",
+    cwd = nil,
   },
   rspec = {
     initialize_timeout_sec = 20,
+    args = {},
+    build_flags = "",
+    cwd = nil,
   },
   rake = {
     initialize_timeout_sec = 20,
+    args = {},
+    build_flags = "",
+    cwd = nil,
   },
 }
 
