@@ -1,6 +1,6 @@
 *neoruby-debugger*
 
-version: 2024/07/02
+version: 2024/07/07
 Author: takkii <karuma.reason@gmail.com>
 License: MIT
 
@@ -13,6 +13,10 @@ gem install debug
 gem install readapt
 
 ※ UNIX environment is recommended
+
+*neoruby-debugger Wiki English*
+
+https://github.com/takkii/neoruby-debugger/wiki/manual
 
 ==============================================================================
 
@@ -34,6 +38,29 @@ Plug 'takkii/vim-com'
 " Set before appearance etc.
 
 lua require('neoruby-debugger').setup()
+
+# Manually edit the settings for rdbg etc.
+lua require('neoruby-debugger').setup {
+  -- Example, rdbg configurations. The path is connected separately.
+  rdbg = {
+    initialize_timeout_sec = 20,
+    port = "${port}",
+    args = {},
+    build_flags = "",
+    detached = true,
+    cwd = nil,
+  },
+  -- Use anyenv, Other Paths, / rails / bundle / readapt / rackup / rspec / rake / 
+  rails = {
+    home = os.getenv("HOME"),
+    path = home .. '/.anyenv/envs/rbenv/shims/rails',
+    -- rails = home .. '/.rbenv/shims/rails'
+    -- rails = '/usr/local/bin/rails'
+    -- rails = 'rails.bat'
+    -- ... 
+  },
+}
+
 lua require('dapui').setup()
 
 ==============================================================================
@@ -74,64 +101,3 @@ The condition is that vim-com/refac.vim is applied as source.
 :RPOpen
 
 ==============================================================================
-
-*Develop env memo*
-
-" neoruby-debugger | OS other than Ubuntu
-
-cd $HOME
-
-git clone git@github.com:takkii/neoruby-debugger.git
-
-" neoruby-debugger | init.vim/PATH add.
-
-set runtimepath+=~/neoruby-debugger
-
-" Re-pasting the help PATH / in Neovim
-
-:helptags ~/neoruby-debugger/doc
-
-" lua/neoruby-debugger.lua
-
-Line 96 -- Settings for each environment with a different OS.
-
-Write the description below line 97 for each OS,
-
-Change the PATH of the Ruby version control,
-
-you are using such as rbenv or anyenv.
-
-" neoruby-debugger | LinuxKernel
-/usr/local/bin/ruby
-
-sudo apt install ruby ruby-dev
-
-" neoruby-debugger | UNIX
-let g:ruby_host_prog = $HOME . '/.rbenv/shims/neovim-ruby-host'
-
-" neoruby-debugger | Windows
-let g:ruby_host_prog = 'C:/Ruby3-x64/bin/neovim-ruby-host'
-
-=============================================================================
-
-*Explore error messages*
-
-ruby error.rb ja
-
-※ Displayed in Japanese.
-
-ruby error.rb
-
-ruby error.rb en
-
-※ Displayed in English.
-
-1. Check the help for the error message.
-
-2. Read the English text and consider how to deal with errors.
-
-3. If nothing is entered as an argument, Default is English.
-
-*You can complete words by pressing Tab.
-
-=============================================================================
