@@ -12,36 +12,48 @@ local default_config = {
     cwd = nil,
   },
   rails = {
+    home = os.getenv("HOME"),
+    path = home .. '/.anyenv/envs/rbenv/shims/rails',
     initialize_timeout_sec = 20,
     args = {},
     build_flags = "",
     cwd = nil,
   },
   bundle = {
+    home = os.getenv("HOME"),
+    path = home .. '/.anyenv/envs/rbenv/shims/bundle',
     initialize_timeout_sec = 20,
     args = {},
     build_flags = "",
     cwd = nil,
   },
   readapt = {
+    home = os.getenv("HOME"),
+    path = home .. '/.anyenv/envs/rbenv/shims/readapt',
     initialize_timeout_sec = 20,
     args = {},
     build_flags = "",
     cwd = nil,
   },
   rackup = {
+    home = os.getenv("HOME"),
+    path = home .. '/.anyenv/envs/rbenv/shims/rackup',
     initialize_timeout_sec = 20,
     args = {},
     build_flags = "",
     cwd = nil,
   },
   rspec = {
+    home = os.getenv("HOME"),
+    path = home .. '/.anyenv/envs/rbenv/shims/rspec',
     initialize_timeout_sec = 20,
     args = {},
     build_flags = "",
     cwd = nil,
   },
   rake = {
+    home = os.getenv("HOME"),
+    path = home .. '/.anyenv/envs/rbenv/shims/rake',
     initialize_timeout_sec = 20,
     args = {},
     build_flags = "",
@@ -110,95 +122,35 @@ local function setup_rdbg_adapter(dap)
     if vim.fn.has('win32') == 1 or vim.fn.has('win64') == 1 then
       -- Windows
       rdbg = 'rdbg.bat'
-      rails = 'rails.bat'
-      bundle = 'bundle.bat'
-      readapt = 'readapt.bat'
-      rackup = 'rackup.bat'
-      rspec = 'rspec.bat'
-      rake = 'rake.bat'
     elseif vim.fn.has('osxdarwin') == 1 or vim.fn.has('osx') == 1 then
       -- MacOS
       home = os.getenv("HOME")
       if vim.fn.isdirectory(home .. '/.rbenv') == 1 then
         rdbg = home .. '/.rbenv/shims/rdbg'
-        rails = home .. '/.rbenv/shims/rails'
-        bundle = home .. '/.rbenv/shims/bundle'
-        readapt = home .. '/.rbenv/shims/readapt'
-        rackup = home .. '/.rbenv/shims/rackup'
-        rspec = home .. '/.rbenv/shims/rspec'
-        rake = home .. '/.rbenv/shims/rake'
       elseif vim.fn.isdirectory(home .. '/.anyenv') == 1 then
         rdbg = home .. '/.anyenv/envs/rbenv/shims/rdbg'
-        rails = home .. '/.anyenv/envs/rbenv/shims/rails'
-        bundle = home .. '/.anyenv/envs/rbenv/shims/bundle'
-        readapt = home .. '/.anyenv/envs/rbenv/shims/readapt'
-        rackup = home .. '/.anyenv/envs/rbenv/shims/rackup'
-        rspec = home .. '/.anyenv/envs/rbenv/shims/rspec'
-        rake = home .. '/.anyenv/envs/rbenv/shims/rake'
       elseif vim.fn.isdirectory('/usr/local/bin') == 1 then
         rdbg = '/usr/local/bin/rdbg'
-        rails = '/usr/local/bin/rails'
-        bundle = '/usr/local/bin/bundle'
-        readapt = '/usr/local/bin/readapt'
-        rackup = '/usr/local/bin/rackup'
-        rspec = '/usr/local/bin/rspec'
-        rake = '/usr/local/bin/rake'
       else
         -- Here for other PATH.
         rdbg = 'rdbg'
-        rails = 'rails'
-        bundle = 'bundle'
-        readapt = 'readapt'
-        rackup = 'rackup'
-        rspec = 'rspec'
-        rake = 'rake'
       end
     elseif vim.fn.has('linux') == 1 then
       -- Linux Kernel
       home = os.getenv("HOME")
       if vim.fn.isdirectory(home .. '/.rbenv') == 1 then
         rdbg = home .. '/.rbenv/shims/rdbg'
-        rails = home .. '/.rbenv/shims/rails'
-        bundle = home .. '/.rbenv/shims/bundle'
-        readapt = home .. '/.rbenv/shims/readapt'
-        rackup = home .. '/.rbenv/shims/rackup'
-        rspec = home .. '/.rbenv/shims/rspec'
-        rake = home .. '/.rbenv/shims/rake'
       elseif vim.fn.isdirectory(home .. '/.anyenv') == 1 then
         rdbg = home .. '/.anyenv/envs/rbenv/shims/rdbg'
-        rails = home .. '/.anyenv/envs/rbenv/shims/rails'
-        bundle = home .. '/.anyenv/envs/rbenv/shims/bundle'
-        readapt = home .. '/.anyenv/envs/rbenv/shims/readapt'
-        rackup = home .. '/.anyenv/envs/rbenv/shims/rackup'
-        rspec = home .. '/.anyenv/envs/rbenv/shims/rspec'
-        rake = home .. '/.anyenv/envs/rbenv/shims/rake'
       elseif vim.fn.isdirectory('/usr/local/bin') == 1 then
         rdbg = '/usr/local/bin/rdbg'
-        rails = '/usr/local/bin/rails'
-        bundle = '/usr/local/bin/bundle'
-        readapt = '/usr/local/bin/readapt'
-        rackup = '/usr/local/bin/rackup'
-        rspec = '/usr/local/bin/rspec'
-        rake = '/usr/local/bin/rake'
       else
         -- Here for other PATH.
         rdbg = 'rdbg'
-        rails = 'rails'
-        bundle = 'bundle'
-        readapt = 'readapt'
-        rackup = 'rackup'
-        rspec = 'rspec'
-        rake = 'rake'
       end
     else
       -- For other OS, change this PATH.
       rdbg = 'rdbg'
-      rails = 'rails'
-      bundle = 'bundle'
-      readapt = 'readapt'
-      rackup = 'rackup'
-      rspec = 'rspec'
-      rake = 'rake'
     end
 
     handle, pid_or_err = vim.loop.spawn(rdbg, opts, function(code)
