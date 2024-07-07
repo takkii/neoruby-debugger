@@ -1,6 +1,6 @@
 *neoruby-debugger*
 
-version: 2024/07/02
+version: 2024/07/07
 Author: takkii <karuma.reason@gmail.com>
 License: MIT
 
@@ -13,6 +13,10 @@ gem install debug
 gem install readapt
 
 ※ UNIX環境を推奨します。
+
+*neoruby-debugger Wiki 日本語*
+
+https://github.com/takkii/neoruby-debugger/wiki/Japanese
 
 ==============================================================================
 
@@ -34,6 +38,29 @@ Plug 'takkii/vim-com'
 " 外観などの前に設定
 
 lua require('neoruby-debugger').setup()
+
+# rdbgなどの設定を手動で編集します
+lua require('neoruby-debugger').setup {
+  -- Example, rdbg configurations. The path is connected separately.
+  rdbg = {
+    initialize_timeout_sec = 20,
+    port = "${port}",
+    args = {},
+    build_flags = "",
+    detached = true,
+    cwd = nil,
+  },
+  -- Use anyenv, Other Paths, / rails / bundle / readapt / rackup / rspec / rake / 
+  rails = {
+    home = os.getenv("HOME"),
+    path = home .. '/.anyenv/envs/rbenv/shims/rails',
+    -- rails = home .. '/.rbenv/shims/rails'
+    -- rails = '/usr/local/bin/rails'
+    -- rails = 'rails.bat'
+    -- ... 
+  },
+}
+
 lua require('dapui').setup()
 
 ==============================================================================
@@ -72,64 +99,5 @@ Plug 'takkii/neoruby-debugger', { 'do': 'bundle update' }
 
 " UIなし、インタラクティブ
 :RPOpen
-
-==============================================================================
-
-*開発環境メモ*
-
-" neoruby-debugger | OS other than Ubuntu
-
-cd $HOME
-
-git clone git@github.com:takkii/neoruby-debugger.git
-
-neoruby-debugger | init.vim/PATH add.
-
-set runtimepath+=~/neoruby-debugger
-
-" ヘルプPATHの貼り直し / Neovim内
-
-:helptags ~/neoruby-debugger/doc
-
-" lua/neoruby-debugger.lua
-
-96行目 -- Settings for each environment with a different OS.
-
-97行目以下記述を各OS、
-
-rbenvやanyenvなど使用しているRubyバージョン管理のPATHに変更。
-
-" neoruby-debugger | LinuxKernel
-/usr/local/bin/ruby
-
-sudo apt install ruby ruby-dev
-
-" neoruby-debugger | UNIX
-let g:ruby_host_prog = $HOME . '/.rbenv/shims/neovim-ruby-host'
-
-" neoruby-debugger | Windows
-let g:ruby_host_prog = 'C:/Ruby3-x64/bin/neovim-ruby-host'
-
-==============================================================================
-
-*エラーメッセージを探索*
-
-ruby error.rb ja
-
-※ 日本語で表示します。
-
-ruby error.rb
-
-ruby error.rb en
-
-※ 英語で表示します。
-
-1. ヘルプでエラーメッセージがどれに該当するかみてください。
-
-2. 英文を読んで、エラーの対処を考慮してください。
-
-3. 引数に何も入れないとき、初期値は英語です。
-
-※ Tabで単語を補完することができます。
 
 ==============================================================================
