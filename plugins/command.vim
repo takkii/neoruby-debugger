@@ -2,9 +2,13 @@
 command PLI :PlugInstall
 command PLU :PlugUpdate
 
-" Python3
-command CH :CheckHealth
+" PATH
+command CH :checkhealth
 command UP :UpdateRemotePlugins
+
+" Mason
+command MA :Mason
+command LS :LspInfo
 
 " Defx-Icon
 command DefxF :Defx -columns=icons:filename:type
