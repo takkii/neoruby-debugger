@@ -1,6 +1,6 @@
 *neoruby-debugger*
 
-version: 2024/07/07
+version: 2024/07/08
 Author: takkii <karuma.reason@gmail.com>
 License: MIT
 
@@ -24,16 +24,15 @@ https://github.com/takkii/neoruby-debugger/wiki/Japanese
 
 " neoruby-debugger | neovim/init.vim
 
-" 例: vim-comのPATH、vim-plugを使用しています。
-if filereadable(expand('~/.neovim/plugged/vim-com/plugins/refac.vim'))
-  source ~/.neovim/plugged/vim-com/plugins/refac.vim
+" vim-plugを利用中。
+if filereadable(expand('~/.neovim/plugged/neoruby-debugger/plugins/command.vim'))
+  source ~/.neovim/plugged/neoruby-debugger/plugins/command.vim
 endif
 
 " vim-plug内追加
 Plug 'mfussenegger/nvim-dap'
 Plug 'rcarriga/nvim-dap-ui'
 Plug 'takkii/neoruby-debugger'
-Plug 'takkii/vim-com'
 
 " 外観などの前に設定
 
@@ -72,9 +71,19 @@ Plug 'takkii/neoruby-debugger', { 'do': 'bundle update' }
 
 ==============================================================================
 
-*vim-com, バージョン: 1.0.0*
+※ neoruby-debugger/command.vimをsourceで適用していることが条件です。
 
-※ vim-com/refac.vimをsourceで適用していることが条件です。
+" :checkhealthを実行します
+:CH
+
+" :UpdateRemotePluginsを実行します
+:UP
+
+" :Masonを実行します
+:MA
+
+" :LspInfoを実行します
+:LS
 
 "vim-plugでプラグインをインストール
 :PLI
