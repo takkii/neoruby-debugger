@@ -105,11 +105,13 @@ local function setup_rdbg_adapter(dap)
     end
 
     if config.request == 'attach' and config.bundle == 'bundle' then
-      args = {'-n', '--open', '--port', config.port, '-c', '--', 'bundle', 'exec', config.command, script}
+      args = {'-n', '--open', '--port', config.port, '-c', '--', 'bundle', 'exec', config.command, config.script}
     elseif config.request == 'launch' and config.bundle == 'bundle' then
       args = {'-n', '--open', '--port', config.port, '-c', '--', 'bundle', 'exec', 'readapt', 'stdio'}
+    elseif config.rdbg == true then
+      args = {'bundle', 'exec', 'rdbg', '--open', '--port', config.port, '-c', '--', config.command, config.script}
     else
-      args = {'--open', '--port', config.port, '-c', '--', config.command, script}
+      args = {'--open', '--port', config.port, '-c', '--', config.command, config.script}
     end
 
     local opts = {
@@ -199,6 +201,21 @@ local function setup_rdbg_configuration(dap)
   },
   {
     type = 'ruby',
+    rdbg = true,
+    name = 'run current file:use rdbg',
+    request = 'attach',
+    command = 'ruby',
+    script = "${file}",
+    port = 38698,
+    server = '127.0.0.1',
+    options = {
+     source_filetype = 'ruby';
+    },
+    localfs = true,
+    waiting = 1000,
+  },
+  {
+    type = 'ruby',
     name = 'run rake',
     bundle = 'bundle',
     request = 'attach',
@@ -255,21 +272,6 @@ local function setup_rdbg_configuration(dap)
     options = {
       source_filetype = 'ruby';
     };
-    localfs = true,
-    waiting = 1000,
-  },
-  {
-    type = 'ruby',
-    name = 'run rails',
-    bundle = 'bundle',
-    request = 'attach',
-    command = 'rails',
-    script = "s",
-    port = 38698,
-    server = "127.0.0.1",
-    options = {
-      source_filetype = 'ruby';
-    },
     localfs = true,
     waiting = 1000,
   },
