@@ -113,7 +113,7 @@ local function setup_rdbg_adapter(dap)
     elseif config.request == 'launch' and config.bundle == 'bundle' and config.rdbg == true then
       args = {'bundle', 'exec', 'rdbg', '-n', '--open', '--port', config.port, '-c', '--', 'bundle', 'exec', 'readapt', 'stdio'}
     elseif config.request == 'attach' and config.rdbg == true then
-      args = {'rdbg', '-n', '--open', '--port', config.port, '-c', '--', config.command, config.script}
+      args = {'rdbg', '--open', '--port', config.port, '-c', '--', config.command, config.script}
     else
       args = {'--open', '--port', config.port, '-c', '--', config.command, config.script}
     end
