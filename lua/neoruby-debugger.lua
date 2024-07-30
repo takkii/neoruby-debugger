@@ -106,9 +106,13 @@ local function setup_rdbg_adapter(dap)
 
     if config.request == 'attach' and config.bundle == 'bundle' then
       args = {'-n', '--open', '--port', config.port, '-c', '--', 'bundle', 'exec', config.command, config.script}
+    elseif config.request == 'attach' and config.bundle == 'bundle' and config.rdbg == true then
+      args = {'bundle', 'exec', 'rdbg', config.port, '-c', '--', 'bundle', 'exec', config.command, config.script}
     elseif config.request == 'launch' and config.bundle == 'bundle' then
       args = {'-n', '--open', '--port', config.port, '-c', '--', 'bundle', 'exec', 'readapt', 'stdio'}
-    elseif config.rdbg == true then
+    elseif config.request == 'launch' and config.bundle == 'bundle' and config.rdbg == true then
+      args = {'bundle', 'exec', 'rdbg', '-n', '--open', '--port', config.port, '-c', '--', 'bundle', 'exec', 'readapt', 'stdio'}
+    elseif config.request == 'attach' and config.rdbg == true then
       args = {'bundle', 'exec', 'rdbg', '--open', '--port', config.port, '-c', '--', config.command, config.script}
     else
       args = {'--open', '--port', config.port, '-c', '--', config.command, config.script}
@@ -293,6 +297,23 @@ local function setup_rdbg_configuration(dap)
   },
   {
     type = 'ruby',
+    rdbg = true,
+    name = 'run rails:use rdbg',
+    bundle = 'bundle',
+    request = 'launch';
+    program = 'bundle';
+    programArgs = {'exec', 'rails', 's'};
+    useBundler = true;
+    port = 38698,
+    server = "127.0.0.1",
+    options = {
+      source_filetype = 'ruby';
+    },
+    localfs = true,
+    waiting = 1000,
+  },
+  {
+    type = 'ruby',
     name = 'run sinatra',
     bundle = 'bundle',
     request = 'attach',
@@ -308,7 +329,40 @@ local function setup_rdbg_configuration(dap)
   },
   {
     type = 'ruby',
+    rdbg = true,
+    name = 'run sinatra:use rdbg',
+    bundle = 'bundle',
+    request = 'attach',
+    command = 'rackup',
+    script = "",
+    port = 38698,
+    server = "127.0.0.1",
+    options = {
+      source_filetype = 'ruby';
+    },
+    localfs = true,
+    waiting = 1000,
+  },
+  {
+    type = 'ruby',
     name = 'run sinatra:use readapt',
+    bundle = 'bundle',
+    request = 'launch';
+    program = 'bundle';
+    programArgs = {'exec', 'rackup'};
+    useBundler = true;
+    port = 38698,
+    server = "127.0.0.1",
+    options = {
+      source_filetype = 'ruby';
+    },
+    localfs = true,
+    waiting = 1000,
+  },
+  {
+    type = 'ruby',
+    rdbg = true,
+    name = 'run sinatra:use readapt and rdbg',
     bundle = 'bundle',
     request = 'launch';
     program = 'bundle';
