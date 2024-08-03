@@ -203,6 +203,23 @@ local function setup_rdbg_configuration(dap)
   },
   {
     type = 'ruby',
+    name = 'run current file:use rdbg',
+    request = 'attach',
+    program = 'bundle';
+    programArgs = {'exec', 'rdbg'};
+    useBundler = true;
+    command = 'ruby',
+    script = "${file}",
+    port = 38698,
+    server = '127.0.0.1',
+    options = {
+     source_filetype = 'ruby';
+    },
+    localfs = true,
+    waiting = 1000,
+  },
+  {
+    type = 'ruby',
     name = 'run rake',
     bundle = 'bundle',
     request = 'attach',
