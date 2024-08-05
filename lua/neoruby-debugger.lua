@@ -137,7 +137,7 @@ local function setup_rdbg_adapter(dap)
         rdbg = '/usr/local/bin/rdbg'
       else
         -- Here for other PATH.
-        rdbg = 'rdbg'
+        rdbg = vim.g["system('echo -n $(which rdbg)')"]
       end
     elseif vim.fn.has('linux') == 1 then
       -- Linux Kernel
@@ -150,7 +150,7 @@ local function setup_rdbg_adapter(dap)
         rdbg = '/usr/local/bin/rdbg'
       else
         -- Here for other PATH.
-        rdbg = 'rdbg'
+        rdbg = vim.g["system('echo -n $(which rdbg)')"]
       end
     else
       -- For other OS, change this PATH.
