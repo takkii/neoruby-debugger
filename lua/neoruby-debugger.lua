@@ -136,8 +136,8 @@ local function setup_rdbg_adapter(dap)
       elseif vim.fn.isdirectory('/usr/local/bin') == 1 then
         rdbg = '/usr/local/bin/rdbg'
       else
-        -- Here for other PATH.
-        rdbg = vim.g["system('echo -n $(which rdbg)')"]
+        -- This is no such file directory.
+        rdbg = vim.fn.system('echo -n $(which rdbg)')
       end
     elseif vim.fn.has('linux') == 1 then
       -- Linux Kernel
@@ -149,8 +149,8 @@ local function setup_rdbg_adapter(dap)
       elseif vim.fn.isdirectory('/usr/local/bin') == 1 then
         rdbg = '/usr/local/bin/rdbg'
       else
-        -- Here for other PATH.
-        rdbg = vim.g["system('echo -n $(which rdbg)')"]
+        -- This is no such file directory.
+        rdbg = vim.fn.system({"echo","-n","$(which rdbg)"})
       end
     else
       -- For other OS, change this PATH.
