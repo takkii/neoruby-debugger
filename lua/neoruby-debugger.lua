@@ -376,6 +376,20 @@ local function setup_rdbg_configuration(dap)
     localfs = true,
     waiting = 1000,
   },
+  {
+    type = 'ruby',
+    name = 'wsl2 run current file : prototype',
+    request = 'attach',
+    command = 'ruby',
+    script = "${file}",
+    port = 38698,
+    server = '0.0.0.0',
+    options = {
+     source_filetype = 'ruby';
+    },
+    localfs = true,
+    waiting = 1000,
+  },
 }
 
   if configs == nil or configs.dap_configurations == nil then
