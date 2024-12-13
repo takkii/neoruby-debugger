@@ -378,7 +378,7 @@ local function setup_rdbg_configuration(dap)
   },
   {
     type = 'ruby',
-    name = 'wsl2 run current file : prototype',
+    name = 'wsl2 run current file',
     request = 'attach',
     command = 'ruby',
     script = "${file}",
