@@ -421,3 +421,4 @@ end
 
 return M
 
+collectgarbage()
