@@ -1,7 +1,7 @@
-[![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) ![GitHub release](https://img.shields.io/github/release/takkii/neoruby-debugger.svg?style=flat) [![GitHub Status](https://img.shields.io/github/last-commit/takkii/neoruby-debugger.svg?style=flat)](GitHub)
+[![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 <div align="center">
-  <p><h2>NeoRuby-Debugger</h2></p>
+  <p><h2>neoruby-debugger</h2></p>
 </div>
 
 <div align="center">
@@ -11,19 +11,11 @@
 <hr />
 
 <div align="center">
-  <p><h3>This is RubyDebugger in Neovim.</h3></p>
+  <p><h4>This is RubyDebugger in Neovim.</h4></p>
 </div>
 
 <div align="center">
-   <p>how to use, <a href="https://github.com/takkii/neoruby-debugger/wiki/manual">here</a>!</p>
-</div>
-
-<div align="center">
-  <p><h3>original code</h3></p>
-</div>
-
-<div align="center">
-   <p>This is based on <a href="https://github.com/leoluz/nvim-dap-go">nvim-dap-go</a> / <a href="https://github.com/suketa/nvim-dap-ruby">nvim-dap-ruby</a>.</p>
+   <p><h4>how to use, <a href="https://github.com/takkii/neoruby-debugger/wiki/manual">here</a>!</h4></p>
 </div>
 
 <hr />
