@@ -5,7 +5,7 @@
 </div>
 
 <div align="center">
-  <p><img src="https://github.com/takkii/photo/blob/main/images/bowbow_hon.gif" alt="bowbow_images" title="logo"></p>
+  <p><img src="./image/cross.gif"></p>
 </div>
 
 <hr />
