@@ -92,7 +92,7 @@ begin
       ECONNREFUSED = <<~EOS.chomp
         Couldn't connect to 127.0.0.1:38698: ECONNREFUSED
 
-        neoruby-debugger 上で、
+        cross 上で、
 
         初回起動時に表示されるメッセージです。
 
