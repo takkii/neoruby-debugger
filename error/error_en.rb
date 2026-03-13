@@ -92,7 +92,7 @@ When finished, type exit
       ECONNREFUSED = <<~EOS.chomp
         Couldn't connect to 127.0.0.1:38698: ECONNREFUSED
 
-        On neoruby-debugger,
+        On cross,
 
         This is the message that appears when you start for the first time.
 
