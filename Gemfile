@@ -2,7 +2,7 @@
 
 source 'http://rubygems.org'
 
-# Resolve neoruby-debugger dependent libraries.
+# Resolve cross dependent libraries.
 
 gem 'debug'
 gem 'neovim'
