@@ -1,0 +1,112 @@
+*cross*
+
+version: 2024/07/08
+Author: takkii <karuma.reason@gmail.com>
+License: MIT
+
+==============================================================================
+
+*Install*
+
+gem install debug
+
+gem install readapt
+
+※ UNIX environment is recommended
+
+*cross Wiki English*
+
+https://github.com/takkii/cross/wiki/manual
+
+==============================================================================
+
+*Setting Example*
+
+" cross | neovim/init.vim
+
+" using vim-plug.
+if filereadable(expand('~/.neovim/plugged/cross/plugins/command.vim'))
+  source ~/.neovim/plugged/cross/plugins/command.vim
+endif
+
+" Added in vim-plug
+Plug 'mfussenegger/nvim-dap'
+Plug 'rcarriga/nvim-dap-ui'
+Plug 'takkii/cross'
+
+" Set before appearance etc.
+
+lua require('cross').setup()
+
+# Manually edit the settings for rdbg etc.
+lua require('cross').setup {
+  -- Example, rdbg configurations. The path is connected separately.
+  rdbg = {
+    initialize_timeout_sec = 20,
+    port = "${port}",
+    args = {},
+    build_flags = "",
+    detached = true,
+    cwd = nil,
+  },
+  -- Use anyenv, Other Paths, / rails / bundle / readapt / rackup / rspec / rake / 
+  rails = {
+    home = os.getenv("HOME"),
+    path = home .. '/.anyenv/envs/rbenv/shims/rails',
+    -- rails = home .. '/.rbenv/shims/rails'
+    -- rails = '/usr/local/bin/rails'
+    -- rails = 'rails.bat'
+    -- ... 
+  },
+}
+
+lua require('dapui').setup()
+
+==============================================================================
+
+*Dependency library removal*
+
+" Execute when dependent libraries are not installed
+Plug 'takkii/cross', { 'do': 'bundle update' }
+
+==============================================================================
+
+The condition is that cross/command.vim is applied as source.
+
+" Run :checkhealth
+:CH
+
+" Run :UpdateRemotePlugins
+:UP
+
+" Run :Mason
+:MA
+
+" Run :LspInfo
+:LS
+
+"Install the plugin with vim-plug
+:PLI
+
+" Update the plugin in vim-plug
+:PLU
+
+" Stop cursor at line, breakpoint
+:BreakPoint
+
+" start debug UI
+:UIOpen
+
+" Select 1 after starting debugging
+:Debug
+
+" UI hidden
+:UIToggle
+
+" Release debug UI
+:UIClose
+
+" No UI, interactive
+:RPOpen
+
+==============================================================================
