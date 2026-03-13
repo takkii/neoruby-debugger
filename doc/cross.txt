@@ -1,7 +1,7 @@
 *cross*
 
-version: 2024/07/08
-Author: takkii <karuma.reason@gmail.com>
+version: 2026/03/13
+Author: Takayuki Kamiyama <karuma.reason@gmail.com>
 License: MIT
 
 ==============================================================================
