@@ -1,0 +1,112 @@
+*cross*
+
+version: 2024/07/08
+Author: takkii <karuma.reason@gmail.com>
+License: MIT
+
+==============================================================================
+
+*インストール*
+
+gem install debug
+
+gem install readapt
+
+※ UNIX環境を推奨します。
+
+*cross Wiki 日本語*
+
+https://github.com/takkii/cross/wiki/Japanese
+
+==============================================================================
+
+*設定例*
+
+" cross | neovim/init.vim
+
+" vim-plugを利用中。
+if filereadable(expand('~/.neovim/plugged/cross/plugins/command.vim'))
+  source ~/.neovim/plugged/cross/plugins/command.vim
+endif
+
+" vim-plug内追加
+Plug 'mfussenegger/nvim-dap'
+Plug 'rcarriga/nvim-dap-ui'
+Plug 'takkii/cross'
+
+" 外観などの前に設定
+
+lua require('cross').setup()
+
+# rdbgなどの設定を手動で編集します
+lua require('cross').setup {
+  -- Example, rdbg configurations. The path is connected separately.
+  rdbg = {
+    initialize_timeout_sec = 20,
+    port = "${port}",
+    args = {},
+    build_flags = "",
+    detached = true,
+    cwd = nil,
+  },
+  -- Use anyenv, Other Paths, / rails / bundle / readapt / rackup / rspec / rake / 
+  rails = {
+    home = os.getenv("HOME"),
+    path = home .. '/.anyenv/envs/rbenv/shims/rails',
+    -- rails = home .. '/.rbenv/shims/rails'
+    -- rails = '/usr/local/bin/rails'
+    -- rails = 'rails.bat'
+    -- ... 
+  },
+}
+
+lua require('dapui').setup()
+
+==============================================================================
+
+*依存ライブラリ解消*
+
+" 依存ライブラリをインストールしていないときに実行する
+Plug 'takkii/cross', { 'do': 'bundle update' }
+
+==============================================================================
+
+※ cross/command.vimをsourceで適用していることが条件です。
+
+" :checkhealthを実行します
+:CH
+
+" :UpdateRemotePluginsを実行します
+:UP
+
+" :Masonを実行します
+:MA
+
+" :LspInfoを実行します
+:LS
+
+"vim-plugでプラグインをインストール
+:PLI
+
+" vim-plug内プラグインを更新
+:PLU
+
+" 行にカーソルを停止、ブレークポイント
+:BreakPoint
+
+" デバッグUI起動
+:UIOpen
+
+" デバッグ起動後、1を選ぶ
+:Debug
+
+" UI 非表示
+:UIToggle
+
+" デバッグUI解除
+:UIClose
+
+" UIなし、インタラクティブ
+:RPOpen
+
+==============================================================================
